@@ -1,0 +1,56 @@
+name: Report your machine
+description: Add your printer's measured numbers to the guide
+labels: ["machine report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing. Numbers from other machines are the most useful thing this project can collect.
+        Please remove any personal data (IP addresses, usernames, serial numbers) before submitting.
+
+  - type: input
+    id: printer
+    attributes:
+      label: Printer and board
+      placeholder: "Ultimaker 2 Extended+ / UltiMainboard v2"
+    validations:
+      required: true
+
+  - type: input
+    id: klipper
+    attributes:
+      label: Klipper version
+      placeholder: "v0.13.0-642"
+    validations:
+      required: false
+
+  - type: textarea
+    id: values
+    attributes:
+      label: Measured values
+      value: |
+        extruder rotation_distance:
+        retraction length / speed:
+        pressure advance:
+        max_accel:
+        overhang limit (degrees from vertical):
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: What surprised you, or what failed
+      description: Failures are as useful as successes. Say what you saw and how you measured it.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: I removed personal data from anything I pasted
+          required: true
+        - label: These are measured values, not settings copied from a profile
+          required: true

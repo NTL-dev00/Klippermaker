@@ -1,0 +1,36 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Privacy check
+        run: python3 tools/scrub_check.py
+
+      - name: Python syntax
+        run: python3 -m py_compile tools/make_test_gcode.py tools/scrub_check.py
+
+      - name: Generate a calibration file
+        run: python3 tools/make_test_gcode.py pa-cube --out /tmp/pa.gcode
+
+      - name: Generated G-code is Klipper-safe
+        run: |
+          set -e
+          test -s /tmp/pa.gcode
+          if grep -qE '^G[23] ' /tmp/pa.gcode; then echo "arc found"; exit 1; fi
+          if grep -qE '^M20[135]' /tmp/pa.gcode; then echo "Marlin limit found"; exit 1; fi
+          grep -q '^G28 Z' /tmp/pa.gcode
+          grep -q '^M83' /tmp/pa.gcode
+
+      - name: Documentation links
+        run: python3 .github/check_links.py

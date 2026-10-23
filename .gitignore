@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Generated G-code and model files — keep the repo small
+*.gcode
+*.gco
+*.3mf
+*.stl
+*.obj
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local overrides — never commit machine-specific secrets
+printer.local.cfg
+*.env
+secrets.*
