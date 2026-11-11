@@ -17,10 +17,13 @@ and typing commands in a terminal. Nothing else is assumed.
 
 ```mermaid
 flowchart LR
-    A["Slicer<br/>Orca or PrusaSlicer"] -->|"G-code"| B["Raspberry Pi<br/>Klipper + Moonraker"]
-    B -->|"USB"| C["Ultimaker 2 Extended+<br/>mainboard"]
-    D["Browser<br/>Mainsail or Fluidd"] <-->|"LAN"| B
+    A["Slicer"] -->|"G-code"| B["Raspberry Pi"]
+    B -->|"USB"| C["Ultimaker 2 Extended+"]
+    D["Browser"] <-->|"LAN"| B
 ```
+
+The slicer is Orca Slicer or PrusaSlicer, and the browser is Mainsail or Fluidd. Both talk to the
+Raspberry Pi, which drives the printer's mainboard over USB.
 
 <img src="docs/images/ultimaker-2-extended-plus-printing.jpg" width="300" alt="Ultimaker 2 Extended+ running on Klipper">
 
