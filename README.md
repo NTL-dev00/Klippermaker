@@ -22,6 +22,8 @@ flowchart LR
     D["Browser<br/>Mainsail or Fluidd"] <-->|"LAN"| B
 ```
 
+<img src="docs/images/ultimaker-2-extended-plus-printing.jpg" width="300" alt="Ultimaker 2 Extended+ running on Klipper">
+
 ---
 
 ## Before you start
